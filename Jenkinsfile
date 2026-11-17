@@ -1,8 +1,8 @@
 pipeline {
     agent any
-
+    
     stages {
-
+        
         stage ('Identify Branch') {
             steps {
                 echo "current branch: ${env.BRANCH_NAME}"
@@ -24,6 +24,11 @@ pipeline {
             steps {
                 echo 'Running unit tests'
                 sh 'mvn test'
+            }
+        }
+        stage ('Package'){
+            steps {
+                sh 'mvn package'
             }
         }
         stage('main branch validation') {
